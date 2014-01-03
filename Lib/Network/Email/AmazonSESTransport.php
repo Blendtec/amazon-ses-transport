@@ -51,6 +51,6 @@ class AmazonSESTransport extends AbstractTransport {
         if(!$res)
             throw new SocketException(__d('cake_dev', 'Could not send email.'));
        
-        return array('headers' => $headers, 'messageId' => $MessageId);
+        return array('headers' => $headers, 'messageId' => $MessageId, 'message' => $message);
 	}
 }
