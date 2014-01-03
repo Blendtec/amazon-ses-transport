@@ -1,0 +1,17 @@
+{
+    "name": "AmazonSESTransport",
+    "type": "cakephp-plugin",
+    "description": "Amazon SES Transport Class for CakePHP",
+    "keywords": ["cakephp","email"],
+    "homepage": "http://www.cakephp.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Criztian Haunsen",
+            "homepage": "http://cristianhaunsen@gmail.com"
+        }
+    ],
+    "require": {
+        "composer/installers": "*"
+    }
+}
