@@ -9,7 +9,7 @@ This is a plugin to send email with CakeEmail using AmazonSES service.
 
 * CakePHP version 2.0 or later.
 * Amazon SES account
-* [AWS SDK for PHP](https://github.com/amazonwebservices/aws-sdk-for-php)
+* [AWS SDK for PHP 2](https://github.com/aws/aws-sdk-php)
 
 ## Installation
 
@@ -17,7 +17,7 @@ This is a plugin to send email with CakeEmail using AmazonSES service.
 * Install AmazonSESTransport to plugin Directory
 
     cd app/Plugin
-    git clone git://github.com/news2u/amazon-ses-transport.git AmazonSESTransport
+    git clone https://github.com/CriztianiX/amazon-ses-transport AmazonSESTransport
 
 ## Sample Code
 
@@ -36,6 +36,9 @@ This is a plugin to send email with CakeEmail using AmazonSES service.
     $email->subject('SES Test from CakePHP');
     
     $res = $email->send('test message.');
+
+## Upgraded to AWS-PHP 2
+[CriztianiX](cristianhaunsen@gmail.com)
 
 ## Author
 
