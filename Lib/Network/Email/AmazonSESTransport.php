@@ -10,6 +10,7 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::uses('AbstractTransport', 'Network/Email');
+use Aws\Ses\SesClient;
 
 /**
  * Send mail using Amazon SES service
@@ -27,10 +28,10 @@ class AmazonSESTransport extends AbstractTransport {
      * @throws SocketException When mail cannot be sent.
      */
 	public function send(CakeEmail $email) {
-        App::import('Vendor', 'Amazon', array('file' => 'AWSSDKforPHP/sdk.class.php'));
         $init_options['key'] = $this->_config['Amazon.SES.Key'];
         $init_options['secret'] = $this->_config['Amazon.SES.Secret'];
-        $ses = new AmazonSES($init_options);
+        $init_options['region'] = $this->_config['Amazon.SES.Region'];
+        $ses = SesClient::factory($init_options);
 
 		$eol = PHP_EOL;
 		if (isset($this->_config['eol'])) {
@@ -38,16 +39,18 @@ class AmazonSESTransport extends AbstractTransport {
 		}
 
         $option = isset($this->_config['additionalParameters']) ? $this->_config['additionalParameters'] : array();
-
 		$headers = $email->getHeaders(array('from', 'sender', 'replyTo', 'readReceipt', 'returnPath', 'to', 'cc', 'subject'));
 		$headers = $this->_headersToString($headers);
 		$message = implode($eol, (array)$email->message());
         $raw_message = $headers . $eol . $eol . $message;
-        $res = $ses->send_raw_email(array('Data'=>base64_encode($raw_message)), $option);
-        if ($res->status != 200) {
-            CakeLog::write('error', var_export($res,1));
+        $res = $ses->sendRawEmail(array('RawMessage' => array('Data' => base64_encode($raw_message) )));
+        
+        $b = $res->toArray();
+        $MessageId = $b['MessageId'];
+
+        if(!$res)
             throw new SocketException(__d('cake_dev', 'Could not send email.'));
-        }
-		return array('headers' => $headers, 'message' => $message);
+       
+        return array('headers' => $headers, 'messageId' => $MessageId);
 	}
 }
