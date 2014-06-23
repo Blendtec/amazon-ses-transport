@@ -11,6 +11,7 @@
             "homepage": "http://cristianhaunsen@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "composer/installers": "*"
     }
