@@ -2,7 +2,7 @@
 /** 
  * Send mail using Amazon SES service
  *
- * This depends on AWS SDK for PHP (https://github.com/amazonwebservices/aws-sdk-for-php.git).
+ * This depends on AWS SDK for PHP 2 (https://github.com/aws/aws-sdk-php).
  *
  * @copyright Copyright 2012 News2u Corporation
  * @link http://www.news2u.co.jp/
@@ -45,11 +45,11 @@ class AmazonSESTransport extends AbstractTransport {
 		$rawMessage = $headers . $eol . $eol . $message;
 		$res = $ses->sendRawEmail(array('RawMessage' => array('Data' => base64_encode($rawMessage) )));
 		$b = $res->toArray();
-		$MessageId = $b['MessageId'];
+		$messageId = $b['MessageId'];
 
 		if (!$res) {
 			throw new SocketException(__d('cake_dev', 'Could not send email.'));
 		}
-		return array('headers' => $headers, 'messageId' => $MessageId, 'message' => $message);
+		return array('headers' => $headers, 'messageId' => $messageId, 'message' => $message);
 	}
 }
