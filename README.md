@@ -18,7 +18,7 @@ This is a plugin to send email with CakeEmail using AmazonSES service.
 
     `cd app/Plugin`
     
-    `git clone https://github.com/gwarner/amazon-ses-transport AmazonSESTransport`
+    `git clone https://github.com/guywarner/amazon-ses-transport AmazonSESTransport`
 
 ## Sample Code
 
