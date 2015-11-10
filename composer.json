@@ -1,7 +1,7 @@
 {
-    "name": "AmazonSESTransport",
+    "name": "blendtec/amazon-ses-transport",
     "type": "cakephp-plugin",
-    "description": "Amazon SES Transport Class for CakePHP",
+    "description": "Amazon SES Transport Class for CakePHP. Originally written by News2u Corp. Updated to AWS SDK 2 by Criztian Haunsen.",
     "keywords": ["cakephp","email"],
     "homepage": "http://www.cakephp.org",
     "license": "MIT",
@@ -9,10 +9,15 @@
         {
             "name": "Criztian Haunsen",
             "homepage": "http://cristianhaunsen@gmail.com"
+        },
+        {
+            "name": "news2u",
+            "homepage": "https://github.com/news2u/amazon-ses-transport"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "composer/installers": "*"
+        "composer/installers": "*",
+        "aws/aws-sdk-php": "2.*"
     }
 }
